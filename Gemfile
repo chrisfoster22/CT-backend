@@ -1,0 +1,8 @@
+source 'https://rubygems.org'
+gem 'sinatra'
+gem 'sinatra-activerecord'
+gem 'sinatra-cross_origin'
+gem 'sqlite3'
+gem 'rake'
+gem 'json'
+gem 's3-authorize'
