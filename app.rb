@@ -57,7 +57,7 @@ end
 post '/posts' do 
 	@json = JSON.parse(request.body.read)['body']
 	@json = JSON.parse(@json)
-	@post = Awact.create(creator_id: 1, title: @json['title'], description: @json['description'], awact_id: @json['awact_id'], user_id: 1)
+	@post = Post.create(user_id: 1, title: @json['title'], description: @json['description'], awact_id: @json['awact_id'], user_id: 1)
 	@post.to_json
 end
 
