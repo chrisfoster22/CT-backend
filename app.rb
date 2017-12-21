@@ -33,6 +33,13 @@ post '/awacts' do
 	@awact.to_json
 end
 
+get '/awacts/:id' do 
+	@awact = Awact.find(params[:id])
+	@posts = @awact.posts
+	@data = {awact: @awact, posts: @posts}
+	@data.to_json
+end
+
 post '/awacts/start' do
 	@json = JSON.parse(request.body.read)['body']
 	@json = JSON.parse(@json)
@@ -45,6 +52,18 @@ post '/awacts/complete' do
 	@json = JSON.parse(@json)
 	@awact = Awact.where(id: @json['awact_id'])
 	@awact.update(completed: true, participant_id: 1)
+end
+
+post '/posts' do 
+	@json = JSON.parse(request.body.read)['body']
+	@json = JSON.parse(@json)
+	@post = Awact.create(creator_id: 1, title: @json['title'], description: @json['description'], awact_id: @json['awact_id'], user_id: 1)
+	@post.to_json
+end
+
+get '/posts/:awact_id' do
+	@posts = Post.where(awact_id: params[:awact_id])
+	@posts.to_json
 end
 
 get '/users/:id' do 

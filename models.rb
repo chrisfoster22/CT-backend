@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
 	belongs_to :user
+	belongs_to :awact
 	has_many :comments, dependent: :destroy
 end
 
@@ -14,5 +15,5 @@ class Comment < ActiveRecord::Base
 end
 
 class Awact < ActiveRecord::Base
-	belongs_to :post
+	has_many :posts
 end
